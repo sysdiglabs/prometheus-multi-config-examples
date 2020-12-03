@@ -20,7 +20,7 @@
   - source_labels: [__param_target]
     target_label: blackbox_instance
   - target_label: __address__
-    replacement: {{ .deployment }}.{{ .namespace} }:{{ .port }}
+    replacement: {{ .deployment }}.{{ .namespace }}:{{ .port }}
   - action: replace
     source_labels: [__meta_kubernetes_pod_uid]
     target_label: sysdig_k8s_pod_uid
