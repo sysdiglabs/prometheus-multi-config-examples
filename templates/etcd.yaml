@@ -1,0 +1,34 @@
+- job_name: etcd
+  scheme: {{ .scheme }}
+{{- if eq .scheme "https" }}
+  tls_config:
+    insecure_skip_verify: {{ .tls_config.insecure_skip_verify}}
+    cert_file: {{ .tls_config.cert_file }}
+    key_file: {{ .tls_config.key_file }}
+{{- end }}
+  kubernetes_sd_configs:
+    - role: pod
+  relabel_configs:
+    - action: keep
+      source_labels: [__meta_kubernetes_pod_host_ip]
+      regex: __HOSTIPS__
+    - action: keep
+      source_labels:
+        - __meta_kubernetes_namespace
+        - __meta_kubernetes_pod_name
+      separator: '/'
+      regex: 'kube-system/etcd-manager-main.+'
+    - source_labels:
+        - __address__
+      action: replace
+      target_label: __address__
+      regex: (.+?)(\\:\\d)?
+      replacement: $1:4001
+      # Holding on to pod-id and container name so we can associate the metrics
+      # with the container (and cluster hierarchy)
+    - action: replace
+      source_labels: [__meta_kubernetes_pod_uid]
+      target_label: sysdig_k8s_pod_uid
+    - action: replace
+      source_labels: [__meta_kubernetes_pod_container_name]
+      target_label: sysdig_k8s_pod_container_name
