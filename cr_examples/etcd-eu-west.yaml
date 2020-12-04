@@ -1,3 +1,4 @@
+apiVersion: monitor.sysdig.com/v1
 kind: PrometheusIntegration
 metadata:
   name: etcd

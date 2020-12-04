@@ -7,8 +7,8 @@ spec:
   names:
     kind: PrometheusIntegrationTemplate
     listKind: PrometheusIntegrationTemplateList
-    plural: prometheusintegrationtemplate
-    singular: prometheusintegrationtemplates
+    plural: prometheusintegrationtemplates
+    singular: prometheusintegrationtemplate
   scope: Namespaced
   versions:
   - name: v1

@@ -1,5 +1,5 @@
 apiVersion: monitor.sysdig.com/v1
-kind: PrometheusTemplate
+kind: PrometheusIntegrationTemplate
 metadata:
   name: etcd
 spec:
