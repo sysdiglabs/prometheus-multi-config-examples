@@ -5,11 +5,11 @@
   kubernetes_sd_configs:
   - role: pod
   relabel_configs:
-{{- if eq .annotation "true" -}}
+{{- if eq .annotation "true" }}
   - action: keep
     source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_probe]
     regex: true
-{{- end -}}
+{{- end }}
   - action: keep
     source_labels: [__meta_kubernetes_pod_node_name]
     regex: __HOSTNAME__
@@ -20,7 +20,7 @@
   - source_labels: [__param_target]
     target_label: blackbox_instance
   - target_label: __address__
-    replacement: {{ .deployment}}.{{ .namespace}}:{{ .port}}
+    replacement: {{ .deployment }}.{{ .namespace }}:{{ .port }}
   - action: replace
     source_labels: [__meta_kubernetes_pod_uid]
     target_label: sysdig_k8s_pod_uid
