@@ -1,5 +1,0 @@
-type: "blackbox"
-annotation: "true"
-deployment: "blackbox"
-namespace: "monitoring"
-port: "9115"
