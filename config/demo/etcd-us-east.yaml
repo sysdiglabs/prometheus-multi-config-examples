@@ -1,6 +1,0 @@
-type: etcd
-scheme: https
-tls_config:
-  insecure_skip_verify: true
-  cert_file: /etc/kubernetes/pki/etcd-manager/etcd-clients-ca2.crt
-  key_file: /etc/kubernetes/pki/etcd-manager/etcd-clients-ca2.key
